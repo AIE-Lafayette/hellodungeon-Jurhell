@@ -11,16 +11,51 @@ namespace HelloDungeon
         public void Run()
         {
             //Initializing stats
+            string playerName = "Tom";
+            string playerChoice = "";
             float playerHealth = 100;
             float mana = 20;
-            float damage = 0;
+            float damage = 1;
             float daggerDamage = 5f;
             float swordDamage = 10f;
             float greatswordDamage = 20f;
+            bool playerAlive = true;
+            bool enemyAlive = true;
 
             //Get player input for name
-            Console.WriteLine("Enter your name young traveller");
-            string playerName = Console.ReadLine();
+            while (playerChoice != "1")
+            {
+                Console.WriteLine("Enter your name young traveller");
+                Console.Write("> ");
+                playerName = Console.ReadLine();
+
+                Console.WriteLine(playerName + " Is that correct?");
+               
+                //Player name confirmation
+                Console.WriteLine("1.Yes");
+                Console.WriteLine("2.No");
+                Console.WriteLine(">");
+                playerChoice = Console.ReadLine();
+
+                if (playerChoice == "1" || playerChoice == "Yes")
+                {
+                    playerChoice = "1";
+                }
+                else if (playerChoice == "2" || playerChoice == "No")
+                {
+                    Console.Clear();
+                    Console.WriteLine("My Apologies");
+                    Console.ReadKey(true);
+                    Console.Clear();
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("I'm sorry I don't speak illiterate");
+                    Console.ReadKey(true);
+                    Console.Clear();
+                }
+            }
             Console.Clear();
 
             //Beginning of the game wall of text
@@ -35,52 +70,97 @@ namespace HelloDungeon
             Console.Clear();
 
             Console.WriteLine("You leave home and begin travelling towards the nearest adventures guild.");
-            Console.WriteLine("Upon entering you walk towards the front and are greeted by a young lady.");
-            Console.WriteLine("You tell her you are eager to become an adventurer and get out there fight some monsters.");
-            Console.WriteLine("She smiles and leaves for a moment but soon returns and lays out three starter weapons for you to use on your journey.");
+            Console.WriteLine("Upon entering you walk towards the front desk and are greeted by a young lady.");
+            Console.WriteLine("You tell her how eager you are to become an adventurer and get out there fight some monsters.");
+            Console.WriteLine("She smiles and hands you a guild registration form to fill out");
+            Console.WriteLine("While you're doing that she leaves for a moment but later returns and lays out three starter weapons for you to use on your journey.");
             Console.ReadKey(true);
+            Console.Clear();
+            
+            //Initializing bool for weapon choice loop
+            bool weaponSelected = false;
 
             //First player choice
-            Console.WriteLine("In front of you lies three blades of varying sizes.");
-            Console.WriteLine("On the left is a small daggger that is low in damage but high in swing speed.");
-            Console.WriteLine("In the middle is your standard sword, it does more damage but is slower to swing.");
-            Console.WriteLine("And on the right is a massive greatsword that deals the most damage but due to it's extreame weight it is really slow to swing.");
-            Console.WriteLine("Make your selection");
-            Console.WriteLine("1. Dagger");
-            Console.WriteLine("2. Sword");
-            Console.WriteLine("3. Greatsword");
-
-            string playerChoice = Console.ReadLine();
-
-            //If statements for player choice
-            if (playerChoice == "1" || playerChoice == "Dagger");
+            while (weaponSelected == false)
             {
-                Console.WriteLine("You have chosen The Dagger of Maxwell the Swift.");
-                Console.WriteLine("A warrior known for his quick reflexes and reactions.");
-                Console.WriteLine("You have 5 attack damage.");
+                Console.WriteLine("\"In front of you lies three blades in varying sizes from The Brothers Max.");
+                Console.WriteLine("On the left is a small daggger that is low in damage but high in swing speed.");
+                Console.WriteLine("In the middle is your standard sword, it does more damage but is slower to swing.");
+                Console.WriteLine("And on the right is a massive greatsword that deals the most damage but also has the slowest swing speed.\"");
+                Console.WriteLine("Make your selection");
+                Console.WriteLine("1. Dagger");
+                Console.WriteLine("2. Sword");
+                Console.WriteLine("3. Greatsword");
 
-                damage = daggerDamage;
+                playerChoice = Console.ReadLine();
+
+                //If statements for player choice
+                if (playerChoice == "1" || playerChoice == "Dagger")
+                {
+                    Console.Clear();
+                    Console.WriteLine("You have chosen The Dagger of Maxwell the Swift.");
+                    Console.WriteLine("A warrior known for his quick reflexes and reactions.");
+                    Console.WriteLine("You have 5 attack damage.");
+
+                    Console.WriteLine("\"Great choice. You look like the speedy type.");
+
+                    damage = daggerDamage;
+                    weaponSelected = true;
+                }
+
+                else if (playerChoice == "2" || playerChoice == "Sword")
+                {
+                    Console.Clear();
+                    Console.WriteLine("You have chosen The Sword of Max The Average.");
+                    Console.WriteLine("A warrior known for never being bad at anything, but never excelling at anything either.");
+                    Console.WriteLine("You have 10 attack damage.");
+
+                    Console.WriteLine("\"Great choice. You can go wrong with ole reliable");
+
+                    damage = swordDamage;
+                    weaponSelected = true;
+                }
+
+                else if (playerChoice == "3" || playerChoice == "Greatsword")
+                {
+                    Console.Clear();
+                    Console.WriteLine("You have chosen The Greatsword of Maximillian The Strong.");
+                    Console.WriteLine("A warrior known for his immense strenth and large weaponry.");
+                    Console.WriteLine("After attempting to lift it and struggling for a while. You think to yourself \"How was that lady able to lift this?\"");
+                    Console.WriteLine("You have 20 attack damage");
+
+                    Console.WriteLine("\"Not the choice I would've gone with (especially since you could barely lift the thing).");
+                    Console.WriteLine("But if that's what you want.");
+
+                    damage = greatswordDamage;
+                    weaponSelected = true;
+                }
+
+                else
+                {
+                    Console.WriteLine("I'm sorry. What the hell did you just say?");
+                    Console.WriteLine("Press any key to try again");
+                    Console.ReadKey(true);
+                    Console.Clear();
+
+                }
             }
+            //After selection has been made
+            Console.WriteLine("Now follow me " + playerName + " let's go meet the other newbies.\"");
+            Console.ReadKey(true);
+            Console.Clear();
 
-            else if (playerChoice == "2" || playerChoice == "Sword")
+            //Introducing team options
+            Console.WriteLine("\"Here are some of the other new recruits.");
+            Console.WriteLine("You're in luck these three are in need of a fourth member to form a proper party.");
+            Console.WriteLine("Try talking to them and getting to know each other before heading out on you first quest\"");
+
+            //Test loops
+            while (playerAlive == true && enemyAlive == true)
             {
-                Console.WriteLine("You have chosen The Sword of Max The Average.");
-                Console.WriteLine("A warrior known for never being bad at anything, but never excelling at anything either.");
-                Console.WriteLine("You have 10 attack damage.");
-
-                damage = swordDamage;
+                //Battle
             }
-
-            else if (playerChoice == "3" || playerChoice == "Greatsword")
-            {
-                Console.WriteLine("You have chosen The Greatsword of Maximillian The Strong.");
-                Console.WriteLine("A warrior known for his immense strenth and large weaponry.");
-                Console.WriteLine("After attempting to lift it and struggling for a while. You think to yourself 'How was that lady able to lift this?");
-                Console.WriteLine("You have 20 attack damage");
-
-                damage = greatswordDamage;
-            }
-
+            
             //Stop mashing on wakeup (Print out advise)
             Console.WriteLine("Just Block LMAO");
             Console.WriteLine("Git Good");
