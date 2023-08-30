@@ -8,14 +8,64 @@ namespace HelloDungeon
 {
     class Game
     {
+        void Ints(int a, int b)
+        {
+            for(int i = a; i<=b; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    Console.WriteLine(i);
+                }
+            }
+            
+        }
+
+        string DisplayMenu(string prompt, string option1, string option2, string option3)
+        {
+            string playerChoice = "";
+            while (playerChoice != "1" && playerChoice != "2" && playerChoice != "3")
+            {
+                //Display prompt
+                Console.Clear();
+                Console.WriteLine(prompt);
+
+                //Display all options
+                Console.WriteLine("1." + option1); 
+                Console.WriteLine("2." + option2);
+                Console.WriteLine("3." + option3);
+               
+                //Get player input
+                Console.WriteLine("> ");
+                playerChoice = Console.ReadLine();
+
+                //If the player input is not one of the available options...
+                if (playerChoice != "1" && playerChoice != "2" && playerChoice != "3")
+                {
+                    //...display the error message
+                    Console.Clear();
+                    Console.WriteLine("Sorry I don't speak illiterate.");
+                    Console.WriteLine("Press any key to continue");
+                    Console.ReadKey(true);
+                }
+            }
+
+            return playerChoice;
+        }
+
         public void Run()
         {
+           
+            
+            Ints(1,100);
+            
+            return;
+
             //Initializing stats
             string playerName = "Tom";
             string playerChoice = "";
             float playerHealth = 100;
             float mana = 20;
-            float damage = 1;
+            float damage = 1f;
             float daggerDamage = 5f;
             float swordDamage = 10f;
             float greatswordDamage = 20f;
@@ -145,6 +195,7 @@ namespace HelloDungeon
 
                 }
             }
+            
             //After selection has been made
             Console.WriteLine("Now follow me " + playerName + " let's go meet the other newbies.\"");
             Console.ReadKey(true);
@@ -155,7 +206,16 @@ namespace HelloDungeon
             Console.WriteLine("You're in luck these three are in need of a fourth member to form a proper party.");
             Console.WriteLine("Try talking to them and getting to know each other before heading out on you first quest\"");
 
-            //Test loops
+            //Display stats function
+            void PrintStats(string a, float b)
+            {
+                Console.WriteLine("Name: " + a);
+                Console.WriteLine("Damage: " + b);
+            }
+            
+            PrintStats(playerName, damage);
+
+            //Eventual battle loop
             while (playerAlive == true && enemyAlive == true)
             {
                 //Battle
@@ -165,11 +225,8 @@ namespace HelloDungeon
             Console.WriteLine("Just Block LMAO");
             Console.WriteLine("Git Good");
 
-            //Stat concepts (most likely aren't final)
-            bool attackIsDodged = true;
-            float dodgeChance = 12.0f;
-            string className = "Mage";
-
+            //End of game while loop
+            while (playerChoice != "1");
         }
     }
 }
