@@ -20,7 +20,8 @@ namespace HelloDungeon
             
         }
 
-        string DisplayMenu(string prompt, string option1, string option2, string option3)
+        //Player choice function
+        string PlayerChoose(string prompt, string option1, string option2, string option3)
         {
             string playerChoice = "";
             while (playerChoice != "1" && playerChoice != "2" && playerChoice != "3")
@@ -32,33 +33,58 @@ namespace HelloDungeon
                 //Display all options
                 Console.WriteLine("1." + option1); 
                 Console.WriteLine("2." + option2);
-                Console.WriteLine("3." + option3);
+                
+                if (option3 != "")
+                {
+                    Console.WriteLine("3." + option3);
+                }
                
                 //Get player input
                 Console.WriteLine("> ");
                 playerChoice = Console.ReadLine();
 
                 //If the player input is not one of the available options...
-                if (playerChoice != "1" && playerChoice != "2" && playerChoice != "3")
+                if (playerChoice != "1" && playerChoice != "2")
                 {
+                    if(playerChoice == "3" && option3 != "")
+                    {
+                        continue;
+                    }
+
                     //...display the error message
                     Console.Clear();
                     Console.WriteLine("Sorry I don't speak illiterate.");
                     Console.WriteLine("Press any key to continue");
                     Console.ReadKey(true);
+
+                    playerChoice = "";
                 }
             }
 
             return playerChoice;
         }
 
+        //Display stats function
+        void PrintStats(string a, float b)
+        {
+            Console.WriteLine("Name: " + a);
+            Console.WriteLine("Damage: " + b);
+        }
+
+        //Battle function
+        float StartBattle(float playerLife, float enemyLife)
+        {
+            while (playerLife > 0 && enemyLife > 0)
+            {
+                //playerLife - ;
+            }
+        }
+
         public void Run()
         {
            
+            //Ints(1,100);
             
-            Ints(1,100);
-            
-            return;
 
             //Initializing stats
             string playerName = "Tom";
@@ -126,21 +152,16 @@ namespace HelloDungeon
             Console.WriteLine("While you're doing that she leaves for a moment but later returns and lays out three starter weapons for you to use on your journey.");
             Console.ReadKey(true);
             Console.Clear();
-            
+
+
             //Initializing bool for weapon choice loop
             bool weaponSelected = false;
 
             //First player choice
             while (weaponSelected == false)
             {
-                Console.WriteLine("\"In front of you lies three blades in varying sizes from The Brothers Max.");
-                Console.WriteLine("On the left is a small daggger that is low in damage but high in swing speed.");
-                Console.WriteLine("In the middle is your standard sword, it does more damage but is slower to swing.");
-                Console.WriteLine("And on the right is a massive greatsword that deals the most damage but also has the slowest swing speed.\"");
-                Console.WriteLine("Make your selection");
-                Console.WriteLine("1. Dagger");
-                Console.WriteLine("2. Sword");
-                Console.WriteLine("3. Greatsword");
+
+                PlayerChoose("\"In front of you lies three blades in varying sizes from The Brothers Max.\" Make your selection.", "Dagger", "Sword", "Greatsword");
 
                 playerChoice = Console.ReadLine();
 
@@ -150,7 +171,9 @@ namespace HelloDungeon
                     Console.Clear();
                     Console.WriteLine("You have chosen The Dagger of Maxwell the Swift.");
                     Console.WriteLine("A warrior known for his quick reflexes and reactions.");
-                    Console.WriteLine("You have 5 attack damage.");
+                    PrintStats(playerName, damage);
+                    Console.Write(">");
+                    Console.ReadKey(true);
 
                     Console.WriteLine("\"Great choice. You look like the speedy type.");
 
@@ -163,7 +186,9 @@ namespace HelloDungeon
                     Console.Clear();
                     Console.WriteLine("You have chosen The Sword of Max The Average.");
                     Console.WriteLine("A warrior known for never being bad at anything, but never excelling at anything either.");
-                    Console.WriteLine("You have 10 attack damage.");
+                    PrintStats(playerName, damage);
+                    Console.Write(">");
+                    Console.ReadKey(true);
 
                     Console.WriteLine("\"Great choice. You can go wrong with ole reliable");
 
@@ -177,7 +202,9 @@ namespace HelloDungeon
                     Console.WriteLine("You have chosen The Greatsword of Maximillian The Strong.");
                     Console.WriteLine("A warrior known for his immense strenth and large weaponry.");
                     Console.WriteLine("After attempting to lift it and struggling for a while. You think to yourself \"How was that lady able to lift this?\"");
-                    Console.WriteLine("You have 20 attack damage");
+                    PrintStats(playerName, damage);
+                    Console.Write(">");
+                    Console.ReadKey(true);
 
                     Console.WriteLine("\"Not the choice I would've gone with (especially since you could barely lift the thing).");
                     Console.WriteLine("But if that's what you want.");
@@ -197,7 +224,7 @@ namespace HelloDungeon
             }
             
             //After selection has been made
-            Console.WriteLine("Now follow me " + playerName + " let's go meet the other newbies.\"");
+            Console.WriteLine("Now follow me " + playerName + " let's get you started on your first quest.\"");
             Console.ReadKey(true);
             Console.Clear();
 
@@ -206,14 +233,9 @@ namespace HelloDungeon
             Console.WriteLine("You're in luck these three are in need of a fourth member to form a proper party.");
             Console.WriteLine("Try talking to them and getting to know each other before heading out on you first quest\"");
 
-            //Display stats function
-            void PrintStats(string a, float b)
-            {
-                Console.WriteLine("Name: " + a);
-                Console.WriteLine("Damage: " + b);
-            }
+           
             
-            PrintStats(playerName, damage);
+            
 
             //Eventual battle loop
             while (playerAlive == true && enemyAlive == true)
